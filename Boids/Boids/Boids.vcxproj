@@ -136,10 +136,14 @@
     <ClCompile Include="Boid.cpp" />
     <ClCompile Include="BoidManager.cpp" />
     <ClCompile Include="Boids_Exercise.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boid.h" />
     <ClInclude Include="BoidManager.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
