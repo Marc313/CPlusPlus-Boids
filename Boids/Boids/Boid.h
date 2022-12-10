@@ -15,12 +15,16 @@ class Boid
 		Vector2 GetPosition();
 		void SetPosition(Vector2 _newPos);
 		Vector2 position;
+		Vector2 direction;
 
 	private:	
 		// Private fields
 		float speed;
-		Vector2 direction;
-		std::vector<Boid> neighbourBoids;
+		//std::vector<Boid> neighbourBoids;
+
+		float cScore;
+		float sScore;
+		float aScore;
 
 		sf::CircleShape shape;
 		//class BoidManager* manager;
@@ -31,8 +35,8 @@ class Boid
 		void Draw(sf::RenderWindow& _window);
 
 		Vector2 CalculateCohesion(std::vector<Boid>& _neighbourBoids);
-		Vector2 CalculateSegregation();
-		Vector2 CalculateAllignment();
+		Vector2 CalculateSegregation(std::vector<Boid>& _neighbourBoids);
+		Vector2 CalculateAllignment(std::vector<Boid>& _neighbourBoids);
 
 		Vector2 GetRandomPos();
 		Vector2 GetRandomDirection();

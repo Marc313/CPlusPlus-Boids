@@ -49,7 +49,7 @@ std::vector<Boid> BoidManager::CalculateNeighbours(Boid& _boid)
 	for (Boid& otherBoid : boids) 
 	{
 		float distance = Vector2::distance(_boid.position, otherBoid.position);
-		if (distance < _boid.neighbourRange) 
+		if (distance < _boid.neighbourRange && &otherBoid != &_boid) 
 		{
 			neighbours.push_back(otherBoid);
 		}

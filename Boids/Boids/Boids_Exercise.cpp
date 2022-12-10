@@ -6,7 +6,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "Boids");
-    BoidManager manager(20);
+    BoidManager manager(50);
 
     while (window.isOpen())
     {
