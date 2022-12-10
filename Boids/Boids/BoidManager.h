@@ -9,6 +9,7 @@ class BoidManager
 	public:
 		// Constructors
 		BoidManager();
+		~BoidManager();
 		BoidManager(int _numOfBoids);
 
 		void OnUpdate(sf::RenderWindow& _window);
@@ -22,5 +23,6 @@ class BoidManager
 		// Private Functions
 
 		void SpawnBoids();
+		std::vector<Boid> CalculateNeighbours(Boid& _boid);
 };
 

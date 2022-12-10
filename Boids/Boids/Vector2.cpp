@@ -1,5 +1,7 @@
 #include "Vector2.h"
 #include <iostream>
+#include <math.h>
+#include <stdlib.h>
 
 Vector2::Vector2() {
 	x = 0;
@@ -46,6 +48,11 @@ Vector2 Vector2::operator/(float scalar)
 	}
 }
 
+std::ostream& operator<<(std::ostream& stream, const Vector2 vector)
+{
+	return stream << vector.to_string();
+}
+
 // Public Methods //
 
 float Vector2::magnitude()
@@ -56,7 +63,6 @@ float Vector2::magnitude()
 Vector2 Vector2::normalized()
 {
 	Vector2 result = Vector2(x, y) / Vector2(x, y).magnitude();
-	std::cout << result.magnitude();
 	return result;
 }
 
@@ -70,7 +76,11 @@ sf::Vector2i Vector2::ToSFMLVector2i()
 	return sf::Vector2i(x, y);
 }
 
-std::string Vector2::to_string() {
+std::string Vector2::to_string() const {
 	return "x: " + std::to_string(x) + " y: " + std::to_string(y);
 }
 
+float Vector2::distance(const Vector2 v1, const Vector2 v2)
+{
+	return std::sqrt(pow(abs(v1.x - v2.x), 2) + pow(abs(v1.y - v2.y), 2));
+}
