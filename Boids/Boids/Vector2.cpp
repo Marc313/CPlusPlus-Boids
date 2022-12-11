@@ -20,22 +20,22 @@ Vector2& Vector2::operator=(const Vector2& v)
 	return *this;
 }
 
-Vector2 Vector2::operator+(Vector2 otherVector)
+Vector2 Vector2::operator+(const Vector2 otherVector) const
 {
 	return Vector2(x + otherVector.x, y + otherVector.y);
 }
 
-Vector2 Vector2::operator-(Vector2 otherVector)
+Vector2 Vector2::operator-(const Vector2 otherVector) const
 {
 	return Vector2(x - otherVector.x, y - otherVector.y);
 }
 
-Vector2 Vector2::operator*(float scalar)
+Vector2 Vector2::operator*(const float scalar) const
 {
 	return Vector2(x * scalar, y * scalar);
 }
 
-Vector2 Vector2::operator/(float scalar)
+Vector2 Vector2::operator/(const float scalar) const
 {
 	if (scalar == 0)
 	{
@@ -80,7 +80,7 @@ std::string Vector2::to_string() const {
 	return "x: " + std::to_string(x) + " y: " + std::to_string(y);
 }
 
-float Vector2::distance(const Vector2 v1, const Vector2 v2)
+float Vector2::distance(const Vector2& v1, const Vector2& v2)
 {
 	return std::sqrt(pow(abs(v1.x - v2.x), 2) + pow(abs(v1.y - v2.y), 2));
 }

@@ -5,7 +5,7 @@ class Time
 {
 public:
 	static float deltaTime;
-	static float calculateDeltaTime();
+	static const float calculateDeltaTime();
 
 private:
 	static sf::Clock clock;

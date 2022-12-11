@@ -15,10 +15,10 @@ public:
 
 	// Operators //
 	Vector2& operator=(const Vector2& v);
-	Vector2 operator+(Vector2 otherVector);
-	Vector2 operator-(Vector2 otherVector);
-	Vector2 operator*(float scalar);
-	Vector2 operator/(float scalar);
+	Vector2 operator+(const Vector2 otherVector) const;
+	Vector2 operator-(const Vector2 otherVector) const;
+	Vector2 operator*(const float scalar) const;
+	Vector2 operator/(const float scalar) const;
 	friend std::ostream& operator<<(std::ostream& stream, const Vector2 vector);
 
 	// Public Methods //
@@ -29,5 +29,5 @@ public:
 	std::string to_string() const;
 
 	// Static Methods
-	static float distance(const Vector2 v1, const Vector2 v2);
+	static float distance(const Vector2& v1, const Vector2& v2);
 };
