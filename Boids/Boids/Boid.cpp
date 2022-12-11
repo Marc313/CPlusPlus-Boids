@@ -1,9 +1,10 @@
 #include "Boid.h"
 #include "Time.h"
-#include <algorithm>
-#include <functional>
-#include <numeric>
 #include <iostream>
+#include <numeric>
+#include "AllignmentBoidDecorator.h"
+#include "CohesionBoidDecorator.h"
+#include "SegregationBoidDecorator.h"
 
 Boid::Boid()
 {
@@ -20,18 +21,45 @@ Boid::~Boid()
 {
 }
 
+Boid& Boid::operator=(const Boid& v)
+{
+	speed = v.speed;
+	position = v.position;
+	direction = v.direction;
+
+	neighbourRange = v.neighbourRange;
+	cScore = v.cScore;
+	sScore = v.sScore;
+	aScore = v.aScore;
+
+	shape = v.shape;
+
+	return *this;
+}
+
 void Boid::OnUpdate(sf::RenderWindow& _window, std::vector<Boid>& _neighbourBoids)
 {
 	Vector2 cohesionDirection = CalculateCohesion(_neighbourBoids);
 	Vector2 segregationDirection = CalculateSegregation(_neighbourBoids);
 	Vector2 allignmentDirection = CalculateAllignment(_neighbourBoids);
 
-	direction = cohesionDirection * cScore + segregationDirection * sScore + allignmentDirection * aScore;
+	Vector2 newDirection = cohesionDirection * cScore + segregationDirection * sScore + allignmentDirection * aScore;
 
-	direction = direction.normalized();
+	// If the decorator would have worked I would do this instead of the lines above
+	// Vector2 newDirection = CalculateDirection(_neighbourBoids);
+
+	if (newDirection.magnitude() > 0.1f) 
+	{
+		direction = newDirection.normalized();
+	}
 
 	Move();
 	Draw(_window);
+}
+
+Vector2 Boid::CalculateDirection(std::vector<Boid>& _neighbourBoids)
+{
+	return Vector2();
 }
 
 Vector2 Boid::GetPosition() 
@@ -45,10 +73,21 @@ void Boid::SetPosition(Vector2 _newPos)
 	shape.setPosition(_newPos.ToSFMLVector2f());
 }
 
+Boid Boid::makeBoid()
+{
+	Boid boid = Boid();
+
+	boid = CohesionBoidDecorator(&boid);
+	boid = SegregationBoidDecorator(&boid);
+	boid = AllignmentBoidDecorator(&boid);
+
+	return boid;
+}
+
 void Boid::InitializeDefaultVariables()
 {
 	speed = 30;
-	neighbourRange = 800;
+	neighbourRange = 700;
 	cScore = 1;
 	sScore = 100.0f;
 	aScore = 1;
@@ -68,12 +107,12 @@ void Boid::Draw(sf::RenderWindow& _window)
 	_window.draw(shape);
 }
 
-Vector2 AccumulateBoidPositions(Vector2 _acc, Boid _boid)
+Vector2 Boid::AccumulateBoidPositions(Vector2 _acc, Boid _boid)
 {
 	return _acc + _boid.GetPosition();
 }
 
-Vector2 AccumulateBoidDirection(Vector2 _acc, Boid _boid)
+Vector2 Boid::AccumulateBoidDirection(Vector2 _acc, Boid _boid)
 {
 	return _acc + _boid.direction;
 }
@@ -84,8 +123,6 @@ Vector2 Boid::CalculateCohesion(std::vector<Boid>& _neighbourBoids)
 	// Return direction to this center
 	Vector2 totalPosition = std::accumulate(_neighbourBoids.begin(), _neighbourBoids.end(), Vector2(), AccumulateBoidPositions );
 	Vector2 localCenterOfMass = totalPosition / _neighbourBoids.size();
-
-	std::cout << localCenterOfMass << std::endl;
 
 	return localCenterOfMass - position;
 }
@@ -107,8 +144,6 @@ Vector2 Boid::CalculateAllignment(std::vector<Boid>& _neighbourBoids)
 	// Calculate the average allignment of neighbours
 	Vector2 totalAllignment = std::accumulate(_neighbourBoids.begin(), _neighbourBoids.end(), Vector2(), AccumulateBoidPositions);
 	Vector2 averageAllignment = totalAllignment / _neighbourBoids.size();
-
-	std::cout << averageAllignment << std::endl;
 
 	return averageAllignment.normalized();
 }

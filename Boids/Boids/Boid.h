@@ -5,29 +5,35 @@
 class Boid
 {
 	public:
-		float neighbourRange;
-
-		Boid();
-		//Boid(class BoidManager* _manager);
-		virtual ~Boid();
-		//void OnUpdate(sf::RenderWindow& _window);
-		void OnUpdate(sf::RenderWindow& _window, std::vector<Boid>& _neighbourBoids);
-		Vector2 GetPosition();
-		void SetPosition(Vector2 _newPos);
+		// Public Fields
 		Vector2 position;
 		Vector2 direction;
 
-	private:	
-		// Private fields
-		float speed;
-		//std::vector<Boid> neighbourBoids;
-
+		float neighbourRange;
 		float cScore;
 		float sScore;
 		float aScore;
 
+		// Public Functions
+		Boid();
+		virtual ~Boid();
+		Boid& operator=(const Boid& v);
+		void OnUpdate(sf::RenderWindow& _window, std::vector<Boid>& _neighbourBoids);
+		virtual Vector2 CalculateDirection(std::vector<Boid>& _neighbourBoids);
+
+		Vector2 GetPosition();
+		void SetPosition(Vector2 _newPos);
+
+		static Boid makeBoid();
+
+	protected:
+		static Vector2 AccumulateBoidPositions(Vector2 _acc, Boid _boid);
+		static Vector2 AccumulateBoidDirection(Vector2 _acc, Boid _boid);
+
+	private:	
+		// Private fields
+		float speed;
 		sf::CircleShape shape;
-		//class BoidManager* manager;
 
 		// Private Functions
 		void InitializeDefaultVariables();

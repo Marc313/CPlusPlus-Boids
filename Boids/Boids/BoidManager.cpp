@@ -37,7 +37,7 @@ void BoidManager::SpawnBoids()
 {
 	for (size_t i = 0; i < numOfBoids; i++)
 	{
-		Boid boid = Boid();
+		Boid boid = Boid::makeBoid();
 		boids.push_back(boid);
 	}
 }

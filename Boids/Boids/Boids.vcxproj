@@ -133,15 +133,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AllignmentBoidDecorator.cpp" />
     <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="BoidDecorator.cpp" />
     <ClCompile Include="BoidManager.cpp" />
     <ClCompile Include="Boids_Exercise.cpp" />
+    <ClCompile Include="CohesionBoidDecorator.cpp" />
+    <ClCompile Include="SegregationBoidDecorator.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllignmentBoidDecorator.h" />
     <ClInclude Include="Boid.h" />
+    <ClInclude Include="BoidDecorator.h" />
     <ClInclude Include="BoidManager.h" />
+    <ClInclude Include="CohesionBoidDecorator.h" />
+    <ClInclude Include="SegregationBoidDecorator.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
