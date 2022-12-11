@@ -66,12 +66,12 @@ Vector2 Vector2::normalized()
 	return result;
 }
 
-sf::Vector2f Vector2::ToSFMLVector2f()
+sf::Vector2f Vector2::ToSFMLVector2f() const
 {
 	return sf::Vector2f(x, y);
 }
 
-sf::Vector2i Vector2::ToSFMLVector2i()
+sf::Vector2i Vector2::ToSFMLVector2i() const
 {
 	return sf::Vector2i(x, y);
 }

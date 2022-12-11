@@ -62,12 +62,12 @@ Vector2 Boid::CalculateDirection(std::vector<Boid>& _neighbourBoids)
 	return Vector2();
 }
 
-Vector2 Boid::GetPosition() 
+Vector2 Boid::GetPosition() const
 {
 	return position;
 }
 
-void Boid::SetPosition(Vector2 _newPos)
+void Boid::SetPosition(const Vector2& _newPos)
 {
 	position = _newPos;
 	shape.setPosition(_newPos.ToSFMLVector2f());
@@ -107,12 +107,12 @@ void Boid::Draw(sf::RenderWindow& _window)
 	_window.draw(shape);
 }
 
-Vector2 Boid::AccumulateBoidPositions(Vector2 _acc, Boid _boid)
+Vector2 Boid::AccumulateBoidPositions(const Vector2& _acc, const Boid& _boid)
 {
 	return _acc + _boid.GetPosition();
 }
 
-Vector2 Boid::AccumulateBoidDirection(Vector2 _acc, Boid _boid)
+Vector2 Boid::AccumulateBoidDirection(const Vector2& _acc, const Boid& _boid)
 {
 	return _acc + _boid.direction;
 }
@@ -148,7 +148,7 @@ Vector2 Boid::CalculateAllignment(std::vector<Boid>& _neighbourBoids)
 	return averageAllignment.normalized();
 }
 
-Vector2 Boid::GetRandomPos()
+Vector2 const Boid::GetRandomPos() const
 {
 	int x = rand() % 800;
 	int y = rand() % 800;
@@ -156,7 +156,7 @@ Vector2 Boid::GetRandomPos()
 	return Vector2(x, y);
 }
 
-Vector2 Boid::GetRandomDirection()
+Vector2 const Boid::GetRandomDirection() const
 {
 	// Generate between -50 and 50, so negative and positive direction are as likely.
 	// We use a large number since rand() returns an int

@@ -24,8 +24,8 @@ public:
 	// Public Methods //
 	float magnitude();
 	Vector2 normalized();
-	sf::Vector2f ToSFMLVector2f();
-	sf::Vector2i ToSFMLVector2i();
+	sf::Vector2f ToSFMLVector2f() const;
+	sf::Vector2i ToSFMLVector2i() const;
 	std::string to_string() const;
 
 	// Static Methods

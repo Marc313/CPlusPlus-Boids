@@ -21,14 +21,14 @@ class Boid
 		void OnUpdate(sf::RenderWindow& _window, std::vector<Boid>& _neighbourBoids);
 		virtual Vector2 CalculateDirection(std::vector<Boid>& _neighbourBoids);
 
-		Vector2 GetPosition();
-		void SetPosition(Vector2 _newPos);
+		Vector2 GetPosition() const;
+		void SetPosition(const Vector2& _newPos);
 
 		static Boid makeBoid();
 
 	protected:
-		static Vector2 AccumulateBoidPositions(Vector2 _acc, Boid _boid);
-		static Vector2 AccumulateBoidDirection(Vector2 _acc, Boid _boid);
+		static Vector2 AccumulateBoidPositions(const Vector2& _acc, const Boid& _boid);
+		static Vector2 AccumulateBoidDirection(const Vector2& _acc, const Boid& _boid);
 
 	private:	
 		// Private fields
@@ -44,7 +44,7 @@ class Boid
 		Vector2 CalculateSegregation(std::vector<Boid>& _neighbourBoids);
 		Vector2 CalculateAllignment(std::vector<Boid>& _neighbourBoids);
 
-		Vector2 GetRandomPos();
-		Vector2 GetRandomDirection();
+		Vector2 const GetRandomPos() const;
+		Vector2 const GetRandomDirection() const;
 };
 
