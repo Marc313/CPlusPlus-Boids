@@ -9,7 +9,7 @@ BoidDecorator::~BoidDecorator()
 {
 }
 
-Vector2 BoidDecorator::CalculateDirection(std::vector<Boid>& _neighbourBoids)
+Vector2 const BoidDecorator::CalculateDirection(const std::vector<Boid>& _neighbourBoids) const
 {
 	return boidPtr->CalculateDirection(_neighbourBoids);
 }

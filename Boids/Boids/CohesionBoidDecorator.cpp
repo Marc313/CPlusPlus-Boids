@@ -9,7 +9,7 @@ CohesionBoidDecorator::~CohesionBoidDecorator()
 {
 }
 
-Vector2 CohesionBoidDecorator::CalculateDirection(std::vector<Boid>& _neighbourBoids)
+const Vector2 CohesionBoidDecorator::CalculateDirection(const std::vector<Boid>& _neighbourBoids) const
 {
 	Vector2 direction = BoidDecorator::CalculateDirection(_neighbourBoids);
 

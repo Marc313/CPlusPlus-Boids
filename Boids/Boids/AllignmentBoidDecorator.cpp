@@ -9,7 +9,7 @@ AllignmentBoidDecorator::~AllignmentBoidDecorator()
 {
 }
 
-Vector2 AllignmentBoidDecorator::CalculateDirection(std::vector<Boid>& _neighbourBoids)
+const Vector2 AllignmentBoidDecorator::CalculateDirection(const std::vector<Boid>& _neighbourBoids) const
 {
 	Vector2 direction = BoidDecorator::CalculateDirection(_neighbourBoids);
 

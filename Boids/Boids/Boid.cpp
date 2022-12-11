@@ -57,7 +57,7 @@ void Boid::OnUpdate(sf::RenderWindow& _window, std::vector<Boid>& _neighbourBoid
 	Draw(_window);
 }
 
-Vector2 Boid::CalculateDirection(std::vector<Boid>& _neighbourBoids)
+const Vector2 Boid::CalculateDirection(const std::vector<Boid>& _neighbourBoids) const
 {
 	return Vector2();
 }

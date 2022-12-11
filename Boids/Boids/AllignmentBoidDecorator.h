@@ -6,6 +6,6 @@ class AllignmentBoidDecorator : public BoidDecorator
 public:
 	AllignmentBoidDecorator(Boid* _boidPtr);
 	virtual ~AllignmentBoidDecorator();
-	Vector2 CalculateDirection(std::vector<Boid>& _neighbourBoids) override;
+	const Vector2 CalculateDirection(const std::vector<Boid>& _neighbourBoids) const override;
 };
 

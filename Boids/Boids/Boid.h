@@ -19,7 +19,7 @@ class Boid
 		virtual ~Boid();
 		Boid& operator=(const Boid& v);
 		void OnUpdate(sf::RenderWindow& _window, std::vector<Boid>& _neighbourBoids);
-		virtual Vector2 CalculateDirection(std::vector<Boid>& _neighbourBoids);
+		const Vector2 CalculateDirection(const std::vector<Boid>& _neighbourBoids) const;
 
 		Vector2 GetPosition() const;
 		void SetPosition(const Vector2& _newPos);

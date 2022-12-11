@@ -6,6 +6,6 @@ class SegregationBoidDecorator : public BoidDecorator
 public:
 	SegregationBoidDecorator(Boid* _boidPtr);
 	virtual ~SegregationBoidDecorator();
-	Vector2 CalculateDirection(std::vector<Boid>& _neighbourBoids) override;
+	const Vector2 CalculateDirection(const std::vector<Boid>& _neighbourBoids) const override;
 };
 
